@@ -57,7 +57,7 @@ const SignUp = () => {
               Sign Up
             </h1>
             <h1 className="text-sm font-semibold mb-6 text-center">
-              Join with us and Visit <span className="text-flamingo">Bangladesh</span>{" "}
+              Join with us and Get <span className="text-flamingo">Services</span>{" "}
             </h1>
             <div className="mt-4">
               <div className="w-full mb-2 lg:mb-0">
