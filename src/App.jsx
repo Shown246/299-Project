@@ -1,11 +1,15 @@
+import AuthContextProvider from './AuthContextProvider';
 import './App.css'
+import Router from './Router'
 
 function App() {
   
   return (
-    <>
-      <h1 className='text-red-700 font-bold text-6xl'>Hello world</h1>
-    </>
+    <div className='dark:bg-river dark:text-white'>
+      <AuthContextProvider>
+        <Router/>
+      </AuthContextProvider>      
+    </div>
   )
 }
 
