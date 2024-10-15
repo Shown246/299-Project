@@ -164,6 +164,9 @@ const NavBar = () => {
                 )}
                 {!user && (
                   <>
+                    <button onClick={() => {
+                        navigate("/serSignUp");
+                      }}>Become a Serviceman</button>
                     <button
                       className="org-btn"
                       onClick={() => {

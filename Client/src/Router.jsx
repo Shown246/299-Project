@@ -6,7 +6,8 @@ import Root from "./Components/Root";
 import LogIn from "./Components/LogIn";
 import SignUp from "./Components/SignUp";
 import Home from "./Components/Home";
-
+import SerSignUp from "./Components/SerSignUp";
+import SerLogIn from "./Components/SerLogIn";
 
 const Router = () => {
   // const { user } = useContext(AuthContext);
@@ -49,6 +50,14 @@ const Router = () => {
         {
           path: "/signUp",
           element: <SignUp />,
+        },
+        {
+          path: "/serlogIn",
+          element: <SerLogIn />,
+        },
+        {
+          path: "/sersignUp",
+          element: <SerSignUp />,
         },
       ],
     },

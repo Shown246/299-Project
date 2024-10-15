@@ -1,9 +1,17 @@
 import { useState } from "react";
 import SearchBox from "./SearchBox";
+import { FaSearch } from "react-icons/fa";
+
 const Banner = () => {
   // State to manage modal visibility and selected option
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
+  const [searchValue, setSearchValue] = useState("");
+
+  // Function to handle the search box value
+  const handleSearchInputChange = (value) => {
+    setSearchValue(value);
+  };
 
   // Toggle modal visibility
   const toggleModal = () => {
@@ -15,6 +23,12 @@ const Banner = () => {
     setSelectedOption(option); // Set selected option
     setIsOpen(false); // Close modal
   };
+
+  // Search button click handle
+  const handleSearchClick = () => {
+    console.log(searchValue, selectedOption);
+  };
+
   return (
     <div>
       <div
@@ -37,7 +51,7 @@ const Banner = () => {
               <div className="flex w-1/3 flex-col items-center justify-center">
                 <button
                   onClick={toggleModal}
-                  className="pl-3 pr-4 py-2 bg-genoa text-teal rounded-lg hover:bg-teal hover:text-accent flex gap-2"
+                  className="max-w-1/2 pl-3 pr-4 py-2 bg-genoa text-teal rounded-lg hover:bg-teal hover:text-accent flex gap-2"
                 >
                   <img src="assets/map.png" alt="" />
                   {selectedOption ? `${selectedOption}` : "Location"}
@@ -82,14 +96,22 @@ const Banner = () => {
                       </div>
 
                       {/* Close button */}
-                      <button onClick={toggleModal} className="btn btn-sm btn-circle btn-ghost hover:text-red-700 hover:border-accent bg-red-800 absolute right-2 top-2">x</button>
+                      <button
+                        onClick={toggleModal}
+                        className="btn btn-sm btn-circle btn-ghost hover:text-red-700 hover:border-accent bg-red-800 absolute right-2 top-2"
+                      >
+                        x
+                      </button>
                     </div>
                   </div>
                 )}
               </div>
 
-              <div className="w-2/3">
-                <SearchBox />
+              <div className="w-2/3 flex gap-2">
+                <SearchBox onSearchChange={handleSearchInputChange} />
+                <button onClick={handleSearchClick} className="bg-teal px-3 rounded-lg">
+                  <FaSearch size={20} />
+                </button>
               </div>
             </div>
           </div>

@@ -1,6 +1,6 @@
 import React from "react";
 import Autosuggest from "react-autosuggest";
-import { FaSearch } from "react-icons/fa";
+
 
 // Sample data
 const languages = [
@@ -8,7 +8,7 @@ const languages = [
     name: "Cat",
   },
   {
-    name: "Elm",
+    name: "AC Servicing",
   },
   {
     name: "Ellipsis",
@@ -65,6 +65,7 @@ class SearchBox extends React.Component {
     this.setState({
       value: newValue,
     });
+    this.props.onSearchChange(newValue);
   };
 
   // Fetch suggestions when the user types
@@ -104,7 +105,6 @@ class SearchBox extends React.Component {
     };
 
     return (
-      <div className="flex gap-1">
         <div className="w-full max-w-md mx-auto">
           <Autosuggest
             suggestions={suggestions}
@@ -116,9 +116,6 @@ class SearchBox extends React.Component {
             theme={theme} // Apply the theme
           />
         </div>
-        <button className="bg-teal px-3 rounded-lg"><FaSearch size={20}/></button>
-        
-      </div>
     );
   }
 }
