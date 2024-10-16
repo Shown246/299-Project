@@ -121,9 +121,6 @@ const SerProfile = () => {
   const handleEduChange = (e) => {
     setEduData(e.target.value);
   };
-  const handlesklChange = (e) => {
-    setsklData(e.target.value);
-  };
   const handleexpChange = (e) => {
     setexpData(e.target.value);
   };

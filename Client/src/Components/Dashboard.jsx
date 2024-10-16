@@ -4,7 +4,6 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import HomeIcon from "@mui/icons-material/Home";
-import SentimentVerySatisfiedIcon from "@mui/icons-material/SentimentVerySatisfied";
 import { CssBaseline } from "@mui/material";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import LuggageOutlinedIcon from "@mui/icons-material/LuggageOutlined";
@@ -13,7 +12,6 @@ import ContactPhoneOutlinedIcon from "@mui/icons-material/ContactPhoneOutlined";
 import AssignmentOutlinedIcon from "@mui/icons-material/AssignmentOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import SerProfile from "./SerProfile";
-import SerProfilePage from "./SerProfilePage";
 import { useNavigate } from "react-router-dom";
 
 export function SubNavTabs() {
@@ -101,7 +99,7 @@ export default function VerticalTabs() {
           borderRight: 1,
           borderColor: "divider",
           width: "100px",
-          height: "100"
+          height: "100 "
         }}
       >
         <Tab
