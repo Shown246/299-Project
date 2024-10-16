@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 const Blogs = () => {
 
   const fetchBlogs = async () => {
-    const response = await axios.get('https://ph-assignment12-server.vercel.app/blogs');
+    const response = await axios.get('http://localhost:5000/blogs');
     return response.data;
   };
   const { status,data, error } = useQuery({ queryKey: '', queryFn: fetchBlogs });

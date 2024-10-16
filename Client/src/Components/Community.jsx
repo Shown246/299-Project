@@ -9,7 +9,7 @@ const Community = () => {
   const [newPost, setNewPost] = useState('');
   const { user } = useContext(AuthContext);
   const fetchPosts = async () => {
-    const response = await axios.get('https://ph-assignment12-server.vercel.app/communityPosts');
+    const response = await axios.get('http://localhost:5000/communityPosts');
     setPosts(response.data);
     return response.data;
   };

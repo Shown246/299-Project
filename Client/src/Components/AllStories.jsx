@@ -7,7 +7,7 @@ const AllStories = () => {
   const [stories, setStories] = useState([]);
   useEffect(() => {
     axios
-      .get("https://ph-assignment12-server.vercel.app/stories")
+      .get("http://localhost:5000/stories")
       .then((response) => {
         setStories(response.data);
       })

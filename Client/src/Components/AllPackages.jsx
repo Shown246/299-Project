@@ -6,7 +6,7 @@ const AllPackages = () => {
   const [packages, setPackages] = useState([]);
   useEffect(() => {
     axios
-      .get("https://ph-assignment12-server.vercel.app/packages")
+      .get("http://localhost:5000/packages")
       .then((res) => {
         setPackages(res.data);
       })

@@ -1,31 +1,25 @@
 import axios from "axios";
-import { useQuery } from '@tanstack/react-query';
-import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
 
-const fetchGuide = async (query) => {
-  const id = query.queryKey[0];
-  const response = await axios.get(`http://localhost:5000/guide/${id}`);
-  return response.data;
-};
 
-const GuideProfilePage = () => {
-  const { id } = useParams();
+const SerProfilePage = () => {
+  const [data, setData] = useState({});
   
-  const { status, data, error } = useQuery({
-    queryKey: [id],
-    queryFn: fetchGuide,
-  });
-  if (status === 'pending') {
-    return <div className="mx-auto flex justify-center items-center"><span className="loading loading-bars loading-lg"></span></div>
-  }
-  if (status === 'error') {
-    return <span>Error: {error.message}</span>
-  }
-
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/userProfile", {withCredentials: true})
+      .then((res) => {
+        setData(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+  console.log(data);
   return (
     <div className="container90">
       <div className="flex items-center p-16">
-        <img src={data.img} className="h-40 object-cover" />
+        <img src={data.photoURL} className="h-40 object-cover" />
         <div>
           <p className="ml-4 text-2xl font-medium">{data.name}</p>
           <p className="ml-4 text-2xl font-medium">{data.email}</p>
@@ -82,4 +76,4 @@ const GuideProfilePage = () => {
   )
 }
 
-export default GuideProfilePage
+export default SerProfilePage;

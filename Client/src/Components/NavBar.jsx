@@ -142,7 +142,7 @@ const NavBar = () => {
                         <p className="mb-1">{user.email}</p>
                         <button
                           onClick={() => {
-                            navigate("/dashboard/profile");
+                            navigate("/dashboard");
                           }}
                           className="hover:text-red-600 hover:underline cursor-pointer mb-1"
                         >

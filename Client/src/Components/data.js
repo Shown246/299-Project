@@ -32,7 +32,7 @@
 // ];
 
 // const fetchImages = async () => {
-//   const response = await axios.get("https://ph-assignment12-server.vercel.app/images");
+//   const response = await axios.get("http://localhost:5000/images");
 //   return response.data;
 // };
 // const dataImg = () => {
@@ -46,7 +46,7 @@ let b = [];
 
 // Function to fetch data and return a promise
 const fetchData = async () => {
-  const response = await fetch("https://ph-assignment12-server.vercel.app/images");
+  const response = await fetch("http://localhost:5000/images");
   const data = await response.json();
   return data;
 }

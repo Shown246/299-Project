@@ -4,6 +4,8 @@ import { useContext, useState } from "react";
 import { IoEye, IoEyeOff } from "react-icons/io5";
 import { FcGoogle } from "react-icons/fc";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SerSignUp = () => {
   const navigate = useNavigate();
@@ -16,12 +18,12 @@ const SerSignUp = () => {
     const photoURL = e.target.photoURL.value;
     const email = e.target.email.value;
     const password = e.target.password.value;
-    const newUser = { name, photoURL, role: "Tourist", email, password };
+    const newUser = { name, photoURL, role: "Serviceman", email, password };
     SignUpUser(name, photoURL, email, password)
       .then((user) => {
         if (user !== null) {
           axios
-            .post("https://ph-assignment12-server.vercel.app/users", newUser)
+            .post("http://localhost:5000/users", newUser)
             .then(() => {
               navigate("/");
             })
@@ -31,7 +33,9 @@ const SerSignUp = () => {
         }
       })
       .catch((error) => {
-        console.log(error);
+        if (error === "Firebase: Error (auth/email-already-in-use).") {
+          toast.error("This Email is already in use");
+        }
       });
   }
   const handleToggle = () => {
@@ -71,7 +75,7 @@ const SerSignUp = () => {
                           const newUser = { name: user.displayName, photoURL: user.photoURL, role: "Tourist", email :
                            user.email};
                           axios
-                            .post("https://ph-assignment12-server.vercel.app/users", newUser)
+                            .post("http://localhost:5000/users", newUser)
                             .then(() => {
                               navigate("/");
                             })
@@ -164,6 +168,7 @@ const SerSignUp = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 };

@@ -8,7 +8,7 @@ const BookTour = () => {
   const [refetch, setRefetch] = useState(false);
   useEffect(() => {
     axios
-      .get("https://ph-assignment12-server.vercel.app/bookings", { withCredentials: true })
+      .get("http://localhost:5000/bookings", { withCredentials: true })
       .then((res) => {
         setBookings(res.data);
       })
@@ -27,7 +27,7 @@ const BookTour = () => {
     }).then((willCancel) => {
       if (willCancel) {
         axios
-          .delete(`https://ph-assignment12-server.vercel.app/cancelBooking/${id}`, {
+          .delete(`http://localhost:5000/cancelBooking/${id}`, {
             withCredentials: true,
           })
           .then(() => {

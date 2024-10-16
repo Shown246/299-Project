@@ -4,6 +4,8 @@ import { useContext, useState } from "react";
 import { IoEye, IoEyeOff } from "react-icons/io5";
 import { FcGoogle } from "react-icons/fc";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -16,22 +18,24 @@ const SignUp = () => {
     const photoURL = e.target.photoURL.value;
     const email = e.target.email.value;
     const password = e.target.password.value;
-    const newUser = { name, photoURL, role: "Tourist", email, password };
+    const newUser = { name, photoURL, role: "Client", email, password };
     SignUpUser(name, photoURL, email, password)
       .then((user) => {
         if (user !== null) {
           axios
-            .post("https://ph-assignment12-server.vercel.app/users", newUser)
+            .post("http://localhost:5000/users", newUser)
             .then(() => {
               navigate("/");
             })
             .catch((error) => {
-              console.log(error);
+              toast.error(error.message);
             });
         }
       })
       .catch((error) => {
-        console.log(error);
+        if (error === "Firebase: Error (auth/email-already-in-use).") {
+          toast.error("This Email is already in use");
+        }
       });
   }
   const handleToggle = () => {
@@ -68,20 +72,22 @@ const SignUp = () => {
                     GoogleSignUp()
                       .then((user) => {
                         if (user !== null) {
-                          const newUser = { name: user.displayName, photoURL: user.photoURL, role: "Tourist", email :
+                          const newUser = { name: user.displayName, photoURL: user.photoURL, role: "Client", email :
                            user.email};
                           axios
-                            .post("https://ph-assignment12-server.vercel.app/users", newUser)
+                            .post("http://localhost:5000/users", newUser)
                             .then(() => {
                               navigate("/");
                             })
                             .catch((error) => {
-                              console.log(error);
+                              toast.error(error.message);
                             });
                         }
                       })
                       .catch((error) => {
-                        console.log(error);
+                        if (error === "Firebase: Error (auth/email-already-in-use).") {
+                          toast.error("This Email is already in use");
+                        }
                       });
                   }}
                 >
@@ -164,6 +170,7 @@ const SignUp = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 };

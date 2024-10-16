@@ -16,7 +16,7 @@ const PackageCard = (props) => {
   
   const fetchWishlist = async (query) => {
     const id = query.queryKey[0];
-    const response = await axios.get(`https://ph-assignment12-server.vercel.app/checkWishlist/${id}`, { withCredentials: true });
+    const response = await axios.get(`http://localhost:5000/checkWishlist/${id}`, { withCredentials: true });
     if(response.data) {
       setWishlist(true);
     }
@@ -58,7 +58,7 @@ const PackageCard = (props) => {
     };
     axios
     .post(
-      "https://ph-assignment12-server.vercel.app/addToWishlist",
+      "http://localhost:5000/addToWishlist",
       data,
       { withCredentials: true }
     )

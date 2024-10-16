@@ -51,7 +51,7 @@ const AddPackage = () => {
       duration: duration,
       tour_plan: tourPlan,
     };
-    axios.post("https://ph-assignment12-server.vercel.app/addPackage", packageData, {withCredentials: true})
+    axios.post("http://localhost:5000/addPackage", packageData, {withCredentials: true})
     .then(() => {
       toast.success("Package added successfully");
       setTitle("");

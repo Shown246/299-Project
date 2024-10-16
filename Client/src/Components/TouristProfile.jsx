@@ -14,7 +14,7 @@ const TouristProfile = () => {
       date: new Date().toLocaleDateString(),
       story: story
     };
-    axios.post('https://ph-assignment12-server.vercel.app/stories', newStory, { withCredentials: true })
+    axios.post('http://localhost:5000/stories', newStory, { withCredentials: true })
       .then(() => {
         toast.success("Story shared successfully");
         e.target.reset();

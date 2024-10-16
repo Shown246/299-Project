@@ -22,7 +22,7 @@ const ManageUsers = () => {
 
   useEffect(() => {
     axios
-      .get(`https://ph-assignment12-server.vercel.app/users?roleFilter=${roleFilter}`, { withCredentials: true })
+      .get(`http://localhost:5000/users?roleFilter=${roleFilter}`, { withCredentials: true })
       .then((res) => {
         setUsers(res.data);
         setAllUsers(res.data);
@@ -44,7 +44,7 @@ const ManageUsers = () => {
     if (role === "Tourist") {
       axios
         .patch(
-          `https://ph-assignment12-server.vercel.app/makeGuide/${id}`,
+          `http://localhost:5000/makeGuide/${id}`,
           {},
           { withCredentials: true }
         )
@@ -63,7 +63,7 @@ const ManageUsers = () => {
     if (role !== "Admin") {
       axios
         .patch(
-          `https://ph-assignment12-server.vercel.app/makeAdmin/${id}`,
+          `http://localhost:5000/makeAdmin/${id}`,
           {},
           { withCredentials: true }
         )

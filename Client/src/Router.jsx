@@ -8,6 +8,7 @@ import SignUp from "./Components/SignUp";
 import Home from "./Components/Home";
 import SerSignUp from "./Components/SerSignUp";
 import SerLogIn from "./Components/SerLogIn";
+import Dashboard from "./Components/Dashboard";
 
 const Router = () => {
   // const { user } = useContext(AuthContext);
@@ -61,6 +62,13 @@ const Router = () => {
         },
       ],
     },
+    {
+      path: "/dashboard",
+      element: <Dashboard />,
+      children: [
+        // Add dashboard routes here
+      ],
+    }
     
   ]);
   return <RouterProvider router={router} />;
