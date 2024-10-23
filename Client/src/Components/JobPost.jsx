@@ -6,6 +6,7 @@ import { AuthContext } from "../AuthContextProvider";
 const JobPost = () => {
   const { user } = useContext(AuthContext);
   const role = user?.role;
+  console.log(role)
   // State to manage modal visibility and selected option
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
