@@ -7,12 +7,12 @@ import HomeIcon from "@mui/icons-material/Home";
 import { CssBaseline } from "@mui/material";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import LuggageOutlinedIcon from "@mui/icons-material/LuggageOutlined";
-import CheckCircleOutlineOutlinedIcon from "@mui/icons-material/CheckCircleOutlineOutlined";
 import ContactPhoneOutlinedIcon from "@mui/icons-material/ContactPhoneOutlined";
 import AssignmentOutlinedIcon from "@mui/icons-material/AssignmentOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
-import SerProfile from "./SerProfile";
+import UserProfile from "./UserProfile";
 import { useNavigate } from "react-router-dom";
+import GavelIcon from '@mui/icons-material/Gavel';
 
 export function SubNavTabs() {
   const [value, setValue] = useState(0);
@@ -99,7 +99,7 @@ export default function VerticalTabs() {
           borderRight: 1,
           borderColor: "divider",
           width: "100px",
-          height: "100 "
+          height: "100"
         }}
       >
         <Tab
@@ -123,8 +123,8 @@ export default function VerticalTabs() {
         <Tab
           label={
             <div>
-              <CheckCircleOutlineOutlinedIcon />
-              <br /> Approvals
+              <GavelIcon/>
+              <br />Auctions
             </div>
           }
           {...a11yProps(2)}
@@ -170,11 +170,10 @@ export default function VerticalTabs() {
       <TabPanel value={value} index={0}>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <SerProfile />
+        <UserProfile />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <h2> Approvals</h2>
-        <SubNavTabs />
+        <h2 className="text-6xl"> Your Auctions</h2>
       </TabPanel>
       <TabPanel value={value} index={3}>
         <h2>Risk</h2>

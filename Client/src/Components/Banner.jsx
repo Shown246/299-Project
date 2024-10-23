@@ -1,33 +1,7 @@
-import { useState } from "react";
-import SearchBox from "./SearchBox";
-import { FaSearch } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const Banner = () => {
-  // State to manage modal visibility and selected option
-  const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(null);
-  const [searchValue, setSearchValue] = useState("");
-
-  // Function to handle the search box value
-  const handleSearchInputChange = (value) => {
-    setSearchValue(value);
-  };
-
-  // Toggle modal visibility
-  const toggleModal = () => {
-    setIsOpen(!isOpen);
-  };
-
-  // Handle option selection
-  const handleOptionSelect = (option) => {
-    setSelectedOption(option); // Set selected option
-    setIsOpen(false); // Close modal
-  };
-
-  // Search button click handle
-  const handleSearchClick = () => {
-    console.log(searchValue, selectedOption);
-  };
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -46,74 +20,7 @@ const Banner = () => {
             <p className="mb-5 text-xl text-accent">
               One-stop solution for your services. Order any service, anytime.
             </p>
-            <div className="flex">
-              {/* Location Modal */}
-              <div className="flex w-1/3 flex-col items-center justify-center">
-                <button
-                  onClick={toggleModal}
-                  className="max-w-1/2 pl-3 pr-4 py-2 bg-genoa text-teal rounded-lg hover:bg-teal hover:text-accent flex gap-2"
-                >
-                  <img src="assets/map.png" alt="" />
-                  {selectedOption ? `${selectedOption}` : "Location"}
-                </button>
-
-                {/* Modal */}
-                {isOpen && (
-                  <div className="fixed inset-0 flex items-center justify-center bg-teal bg-opacity-50 z-50">
-                    <div className="bg-teal relative rounded-lg shadow-lg w-80 p-6">
-                      <h2 className="text-lg font-semibold mb-4">
-                        Select a Location
-                      </h2>
-
-                      {/* Scrollable content */}
-                      <div className="max-h-60 overflow-y-auto">
-                        <ul className="grid grid-cols-2 gap-2">
-                          {/* Options */}
-                          {[
-                            "Option 1",
-                            "Option 2",
-                            "Option 3",
-                            "Option 4",
-                            "Option 5",
-                            "Option 6",
-                            "Option 7",
-                            "Option 8",
-                            "Option 9",
-                            "Option 10",
-                            "Option 11",
-                            "Option 12",
-                            // Add more options here
-                          ].map((option) => (
-                            <li
-                              key={option}
-                              onClick={() => handleOptionSelect(option)}
-                              className="py-2 px-4 cursor-pointer hover:bg-genoa rounded"
-                            >
-                              {option}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      {/* Close button */}
-                      <button
-                        onClick={toggleModal}
-                        className="btn btn-sm btn-circle btn-ghost hover:text-red-700 hover:border-accent bg-red-800 absolute right-2 top-2"
-                      >
-                        x
-                      </button>
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              <div className="w-2/3 flex gap-2">
-                <SearchBox onSearchChange={handleSearchInputChange} />
-                <button onClick={handleSearchClick} className="bg-teal px-3 rounded-lg">
-                  <FaSearch size={20} />
-                </button>
-              </div>
-            </div>
+            <button className="btn bg-genoa" onClick={() => navigate("/jobPost")}>Get Started</button>
           </div>
         </div>
       </div>

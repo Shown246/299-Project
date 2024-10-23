@@ -7,6 +7,7 @@ import "react-tooltip/dist/react-tooltip.css";
 const NavBar = () => {
   const navigate = useNavigate();
   const { user, LogOutUser } = useContext(AuthContext);
+  const role = user?.role;
   const [, setTheme] = useState("light");
 
   useEffect(() => {
@@ -23,7 +24,14 @@ const NavBar = () => {
     document.documentElement.classList.toggle("dark", newTheme === "dark");
     localStorage.setItem("theme", newTheme);
   };
-
+  const handleDashboard = () => {
+    if(role === "Client"){
+      navigate("/userDashboard");
+    }
+    else if(role === "Serviceman"){
+      navigate("/serDashboard");
+    }
+  };
   // const activeStyle =
   //   "text-accentGold text-lg underline underline-offset-8 font-semibold rounded-lg p-3 bg-flamingo";
   // const navLists = (
@@ -141,9 +149,7 @@ const NavBar = () => {
                         <p className="mb-1">{user.displayName}</p>
                         <p className="mb-1">{user.email}</p>
                         <button
-                          onClick={() => {
-                            navigate("/dashboard");
-                          }}
+                          onClick={handleDashboard}
                           className="hover:text-red-600 hover:underline cursor-pointer mb-1"
                         >
                           Dashboard
