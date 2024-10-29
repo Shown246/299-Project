@@ -71,6 +71,7 @@ async function run() {
 
     const database = client.db("299DB");
     const users = database.collection("users");
+    const jobPosts = database.collection("JobPosts");
 
     app.post("/users", async (req, res) => {
       const newUser = req.body;
@@ -95,8 +96,13 @@ async function run() {
       res.send(result?.role);
     });
 
+    app.post("/jobPost", verifyToken, async (req, res) => {
+      const newJobPost = req.body;
+      const result = await jobPosts.insertOne(newJobPost);
+      res.send(result);
+    });
 
-    await client.db("ph-assignment12").command({ ping: 1 });
+    await client.db("299DB").command({ ping: 1 });
     console.log(
       "Pinged your deployment. You successfully connected to MongoDB!"
     );

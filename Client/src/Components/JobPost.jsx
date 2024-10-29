@@ -2,6 +2,9 @@ import { useState, useContext } from "react";
 import SearchBox from "./SearchBox";
 import { FaSearch } from "react-icons/fa";
 import { AuthContext } from "../AuthContextProvider";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const JobPost = () => {
   const { user } = useContext(AuthContext);
@@ -69,6 +72,14 @@ const JobPost = () => {
       e.preventDefault();
       // Perform form submission, e.g., send formData to the backend.
       console.log("Form Data: ", formData);
+      axios.post("http://localhost:5000/jobPost", formData, {withCredentials : true})
+       .then(() => {
+        toast.success("Log In successful");
+       })
+       .catch((error) => {
+         toast.error("Failed to post the Job");
+         console.log(error.message);
+       });
 
     };
   return (
@@ -221,6 +232,7 @@ const JobPost = () => {
           </p>
         </>
       )}
+    <ToastContainer/>
     </>
   );
 };
