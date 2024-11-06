@@ -10,7 +10,7 @@ const port = process.env.PORT || 5000;
 app.use(
   cors({
     origin: [
-      "http://localhost:5173"
+      "*"
     ],
     methods: ["GET", "POST", "PATCH", "PUT", "DELETE"],
     credentials: true,
@@ -101,6 +101,30 @@ async function run() {
       const result = await jobPosts.insertOne(newJobPost);
       res.send(result);
     });
+
+    app.post("/serProfile", verifyToken, async (req, res) => {
+      const email = req.user.email;
+      console.log(email);
+      res.header("Access-Control-Allow-Origin", "*");
+      // if (req.body.email === email) {
+      //   const query = { email: email };
+      //   const update = {
+      //     $set: {
+      //       eduData: req.body.eduData,
+      //       skill: req.body.skill,
+      //       expData: req.body.expData,
+      //       phnData: req.body.phnData,
+      //       selectedLocation: req.body.selectedLocation,
+      //       gender: req.body.gender
+      //     },
+      //   };
+      //   const options = { upsert: true };
+      //   const result = await guides.updateOne(query, update, options);
+      //   res.send(result);
+      // } else {
+      //   return res.status(403).send({ message: "Unauthorized" });
+      // }
+    })
 
     await client.db("299DB").command({ ping: 1 });
     console.log(

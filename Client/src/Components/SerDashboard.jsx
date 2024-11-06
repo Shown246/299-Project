@@ -5,13 +5,8 @@ import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import HomeIcon from "@mui/icons-material/Home";
 import { CssBaseline } from "@mui/material";
-import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import LuggageOutlinedIcon from "@mui/icons-material/LuggageOutlined";
-import CheckCircleOutlineOutlinedIcon from "@mui/icons-material/CheckCircleOutlineOutlined";
-import ContactPhoneOutlinedIcon from "@mui/icons-material/ContactPhoneOutlined";
-import AssignmentOutlinedIcon from "@mui/icons-material/AssignmentOutlined";
-import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
-import UserProfile from "./UserProfile";
+import SerProfile from "./SerProfile";
 import { useNavigate } from "react-router-dom";
 
 export function SubNavTabs() {
@@ -99,7 +94,7 @@ export default function VerticalTabs() {
           borderRight: 1,
           borderColor: "divider",
           width: "100px",
-          height: "100"
+          height: "100vh"
         }}
       >
         <Tab
@@ -120,57 +115,13 @@ export default function VerticalTabs() {
           }
           {...a11yProps(1)}
         />
-        <Tab
-          label={
-            <div>
-              <CheckCircleOutlineOutlinedIcon />
-              <br /> Approvals
-            </div>
-          }
-          {...a11yProps(2)}
-        />
-        <Tab
-          label={
-            <div>
-              <InfoOutlinedIcon />
-              <br /> Risk
-            </div>
-          }
-          {...a11yProps(2)}
-        />
-        <Tab
-          label={
-            <div>
-              <ContactPhoneOutlinedIcon />
-              <br /> Contact
-            </div>
-          }
-          {...a11yProps(3)}
-        />
-        <Tab
-          label={
-            <div>
-              <AssignmentOutlinedIcon />
-              <br /> Reporting
-            </div>
-          }
-          {...a11yProps(4)}
-        />
-        <Tab
-          label={
-            <div>
-              <SettingsOutlinedIcon />
-              <br /> Admin
-            </div>
-          }
-          {...a11yProps(5)}
-        />
+        
 
       </Tabs>
       <TabPanel value={value} index={0}>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <UserProfile />
+        <SerProfile />
       </TabPanel>
       <TabPanel value={value} index={2}>
         <h2> Approvals</h2>

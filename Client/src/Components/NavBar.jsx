@@ -8,6 +8,7 @@ const NavBar = () => {
   const navigate = useNavigate();
   const { user, LogOutUser } = useContext(AuthContext);
   const role = user?.role;
+  console.log(role);
   const [, setTheme] = useState("light");
 
   useEffect(() => {
