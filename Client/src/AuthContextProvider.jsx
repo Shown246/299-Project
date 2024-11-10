@@ -124,7 +124,6 @@ const AuthContextProvider = ({ children }) => {
           const updatedUser = { ...currentUser, role };
           setUser(updatedUser);
           localStorage.setItem('user', JSON.stringify(updatedUser));
-          
           await axios.post("http://localhost:5000/jwt", loggedUser, { withCredentials: true });
         } catch (error) {
           console.error('Error during authentication state change:', error);

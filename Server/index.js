@@ -9,18 +9,18 @@ const app = express();
 const port = process.env.PORT || 5000;
 app.use(
   cors({
-    origin: [
-      "*"
-    ],
+    origin: "http://localhost:5173", // Your frontend URL
     methods: ["GET", "POST", "PATCH", "PUT", "DELETE"],
-    credentials: true,
+    credentials: true, // Allows cookies
   })
 );
+
+app.options("*", cors()); // Enable preflight across all routes
 
 const cookieOptions = {
   httpOnly: true,
   secure: process.env.NODE_ENV === "production",
-  sameSite: process.env.NODE_ENV === "production" ? "none" : "strict",
+  sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Use "lax" in development
 };
 
 app.use(express.json());
@@ -57,10 +57,11 @@ async function run() {
     // await client.connect();
     app.post("/jwt", async (req, res) => {
       const email = req.body;
-      const token = jwt.sign(email, process.env.JWT_SECRET, {
-        expiresIn: "7d",
-      });
-      res.cookie("token", token, cookieOptions).send({ success: true });
+      const token = jwt.sign(email, process.env.JWT_SECRET, { expiresIn: "7d" });
+      
+      // Set cookie with appropriate options
+      res.cookie("token", token, cookieOptions);
+      res.status(200).send({ success: true }); // Use 200 status instead of 204
     });
 
     app.post("/logout", async (req, res) => {
@@ -72,6 +73,7 @@ async function run() {
     const database = client.db("299DB");
     const users = database.collection("users");
     const jobPosts = database.collection("JobPosts");
+    const serProfiles = database.collection("ServiceMen");
 
     app.post("/users", async (req, res) => {
       const newUser = req.body;
@@ -105,26 +107,31 @@ async function run() {
     app.post("/serProfile", verifyToken, async (req, res) => {
       const email = req.user.email;
       console.log(email);
-      res.header("Access-Control-Allow-Origin", "*");
-      // if (req.body.email === email) {
-      //   const query = { email: email };
-      //   const update = {
-      //     $set: {
-      //       eduData: req.body.eduData,
-      //       skill: req.body.skill,
-      //       expData: req.body.expData,
-      //       phnData: req.body.phnData,
-      //       selectedLocation: req.body.selectedLocation,
-      //       gender: req.body.gender
-      //     },
-      //   };
-      //   const options = { upsert: true };
-      //   const result = await guides.updateOne(query, update, options);
-      //   res.send(result);
-      // } else {
-      //   return res.status(403).send({ message: "Unauthorized" });
-      // }
+      if (req.body.email === email) {
+        const query = { email: email };
+        const update = {
+          $set: {
+            eduData: req.body.eduData,
+            skill: req.body.skill,
+            expData: req.body.expData,
+            phnData: req.body.phnData,
+            selectedLocation: req.body.selectedLocation,
+            gender: req.body.gender
+          },
+        };
+        const options = { upsert: true };
+        const result = await serProfiles.updateOne(query, update, options);
+        res.send(result);
+      } else {
+        return res.status(403).send({ message: "Unauthorized" });
+      }
     })
+
+    app.get("/serProfile", verifyToken, async (req, res) => {
+      const email = req.query.email;
+      const result = await serProfiles.findOne({ email: email });
+      res.send(result);
+    });
 
     await client.db("299DB").command({ ping: 1 });
     console.log(

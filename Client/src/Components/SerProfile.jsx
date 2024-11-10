@@ -30,8 +30,33 @@ const names = [
 
 const SerProfile = () => {
   const { user } = useContext(AuthContext);
+  console.log(user.email);
   //Skills selection
   const [skill, setSkill] = useState([]);
+  const [eduData, setEduData] = useState("");
+  const [expData, setexpData] = useState("");
+  const [phnData, setphnData] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedLocation, setSelectedLocation] = useState(null);
+  const [gender, setGender] = useState("");
+  const [isSaveEnabled, setIsSaveEnabled] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/serProfile?email=${user.email}` ,{withCredentials: true})
+      .then((res) => {
+        const data = res.data;
+        console.log(data);
+        // setEduData(data.eduData);
+        // setSkill(data.sklData);
+        // setexpData(data.expData);
+        // setphnData(data.phnData);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [user.email]);
 
   const handleChange = (event) => {
     const {
@@ -42,8 +67,6 @@ const SerProfile = () => {
       typeof value === "string" ? value.split(",") : value
     );
   };
-  const [isOpen, setIsOpen] = useState(false);
-  const [selectedLocation, setSelectedLocation] = useState(null);
   // Toggle modal visibility
   const toggleModal = () => {
     setIsOpen(!isOpen);
@@ -55,40 +78,15 @@ const SerProfile = () => {
     setIsOpen(false); // Close modal
   };
 
-  //Gender selection
-  const [gender, setGender] = useState("");
-
   const handleGenderChange = (event) => {
     setGender(event.target.value);
   };
-  const [eduData, setEduData] = useState("");
-  const [expData, setexpData] = useState("");
-  const [phnData, setphnData] = useState("");
-  const [isSaveEnabled, setIsSaveEnabled] = useState(false);
-  // useEffect(() => {
-  //   axios
-  //     .get(`http://localhost:5000/guide/profile?email=${user.email}`)
-  //     .then((res) => {
-  //       const data = res.data;
-  //       setEduData(data.eduData);
-  //       setsklData(data.sklData);
-  //       setexpData(data.expData);
-  //       setphnData(data.phnData);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, [user.email]);
-  const [isEditing, setIsEditing] = useState(false);
+  
+  
+  
   const handleEditClick = () => {
     setIsEditing(true);
     setIsSaveEnabled(true);
-  };
-  let axiosConfig = {
-    headers: {
-        'Content-Type': 'application/json;charset=UTF-8',
-        "Access-Control-Allow-Origin": "*",
-    }
   };
   const handleSaveClick = () => {
     const updatedData = {
@@ -109,7 +107,7 @@ const SerProfile = () => {
         updatedData,
         {
           withCredentials: true,
-        }, axiosConfig
+        }
       )
       .then(() => {
         setIsEditing(false);
@@ -213,7 +211,7 @@ const SerProfile = () => {
                   <label className="mb-2 text-base font-semibold text-gray-900 dark:text-white">
                     Operating Location
                   </label>
-                  <p className="text-lg w-60 p-2">{eduData}</p>
+                  <p className="text-lg w-60 p-2">{selectedLocation}</p>
                 </div>
               </div>
             )}
