@@ -9,6 +9,7 @@ const NavBar = () => {
   const { user, LogOutUser } = useContext(AuthContext);
   const role = user?.role;
   console.log(role);
+  console.log("Hello World");
   const [, setTheme] = useState("light");
 
   useEffect(() => {
