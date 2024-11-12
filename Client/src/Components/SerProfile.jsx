@@ -25,7 +25,22 @@ const MenuProps = {
 
 const names = [
   "Plumbing",
-  "Electrician"
+  "Electrician",
+  "Carpenter",
+  "HVAC (Heating, Ventilation, and Air Conditioning) Repair",
+  "Appliance Repairer",
+  "Car Mechanic",
+  "Landscaping/Gardening",
+  "Home Cleaning Service",
+  "Painter",
+  "Mobile Device Repairer",
+  "Locksmith Service",
+  "Swimming Pool Maintenance",
+  "Flooring Installation",
+  "Gutter Cleaning" 
+
+
+
 ];
 
 const SerProfile = () => {
@@ -167,18 +182,27 @@ const SerProfile = () => {
                             <ul className="grid grid-cols-2 gap-2">
                               {/* Options */}
                               {[
-                                "Option 1",
-                                "Option 2",
-                                "Option 3",
-                                "Option 4",
-                                "Option 5",
-                                "Option 6",
-                                "Option 7",
-                                "Option 8",
-                                "Option 9",
-                                "Option 10",
-                                "Option 11",
-                                "Option 12",
+                                "Dhanmmondi",
+                                "Mirpur",
+                                "Uttara",
+                                "Banani",
+                                "Gulshan",
+                                "Mohammadpur",
+                                "Bashundhara R/A",
+                                "Nikunjo",
+                                "Badda",
+                                "Baridhara",
+                                "Old Town(Dhaka)",
+                                "Wari",
+                                "Khilgaon",
+                                "Kakrail",
+                                "Motijhil",
+                                "Rampura",
+                                "Banassre",
+                                "Farmgate",
+                                "Tongi",
+                                "Tejgaon"
+                                
                                 // Add more options here
                               ].map((option) => (
                                 <li
