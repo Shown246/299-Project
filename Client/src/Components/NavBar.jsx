@@ -27,59 +27,13 @@ const NavBar = () => {
     localStorage.setItem("theme", newTheme);
   };
   const handleDashboard = () => {
-    if(role === "Client"){
+    if (role === "Client") {
       navigate("/userDashboard");
-    }
-    else if(role === "Serviceman"){
+    } else if (role === "Serviceman") {
       navigate("/serDashboard");
     }
   };
-  // const activeStyle =
-  //   "text-accentGold text-lg underline underline-offset-8 font-semibold rounded-lg p-3 bg-flamingo";
-  // const navLists = (
-  //   <>
-  //     <li className="mb-3 un lg:mb-0">
-  //       <NavLink
-  //         to="/"
-  //         className={({ isActive }) => (isActive ? activeStyle : "p-3")}
-  //       >
-  //         Home
-  //       </NavLink>
-  //     </li>
-  //     <li className="mb-3 lg:mb-0">
-  //       <NavLink
-  //         to="/community"
-  //         className={({ isActive }) => (isActive ? activeStyle : "p-3")}
-  //       >
-  //         Community
-  //       </NavLink>
-  //     </li>
-  //     <li className="mb-3 lg:mb-0">
-  //       <NavLink
-  //         to="/blogs"
-  //         className={({ isActive }) => (isActive ? activeStyle : "p-3")}
-  //       >
-  //         Blogs
-  //       </NavLink>
-  //     </li>
-  //     <li className="mb-3 lg:mb-0">
-  //       <NavLink
-  //         to="/about"
-  //         className={({ isActive }) => (isActive ? activeStyle : "p-3")}
-  //       >
-  //         About Us
-  //       </NavLink>
-  //     </li>
-  //     <li className="mb-3 lg:mb-0">
-  //       <NavLink
-  //         to="/contact"
-  //         className={({ isActive }) => (isActive ? activeStyle : "p-3")}
-  //       >
-  //         Contact Us
-  //       </NavLink>
-  //     </li>
-  //   </>
-  // );
+
   return (
     <div className="bg-genoa">
       <header className="container90">
@@ -87,11 +41,7 @@ const NavBar = () => {
           <div className="navbar">
             <div className="navbar-start">
               <div className="dropdown">
-                <div
-                  tabIndex={0}
-                  role="button"
-                  className="btn btn-ghost lg:hidden"
-                >
+                <div tabIndex={0} role="button" className="btn btn-ghost">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-5 w-5"
@@ -107,23 +57,112 @@ const NavBar = () => {
                     />
                   </svg>
                 </div>
+                {/* Dropdown Menu */}
                 <ul
                   tabIndex={0}
                   className=" menu-sm dropdown-content mt-3 z-40 pt-6 p-2 shadow rounded-box w-52 bg-genoa text-white"
                 >
                   {/* {navLists} */}
+                  <li>
+                    <button
+                      onClick={() => navigate("/home")}
+                      className="btn btn-primary btn-sm w-full mb-2"
+                    >
+                      About Us
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      onClick={() => navigate("/contact")}
+                      className="btn btn-primary btn-sm w-full mb-2"
+                    >
+                      Contact Us
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      onClick={() => navigate("/policy")}
+                      className="btn btn-primary btn-sm w-full mb-2"
+                    >
+                      Our Policy
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      className="btn btn-primary btn-sm w-full mb-2"
+                      onClick={() => navigate("/language")}
+                    >
+                      Language
+                    </button>
+                  </li>
+                  <li>
+                    {/* Customer-side: */}
+                    {/*for customer*/}
+                    {role === "Client" && (
+                      <ul>
+                        <button
+                          className="btn btn-primary btn-sm w-full mb-2"
+                          onClick={() => navigate("/service/myServices")}
+                        >
+                          My Jobs
+                        </button>
+                        <li>
+                          <button
+                            className="btn btn-primary btn-sm w-full mb-2"
+                            onClick={() => navigate("/service/Services")}
+                          >
+                            Add Services
+                          </button>
+                        </li>
+                        <li>
+                          <button
+                            className="btn btn-primary btn-sm w-full mb-2"
+                            onClick={() => navigate("/service/Payments")}
+                          >
+                            Payments
+                          </button>
+                        </li>
+                      </ul>
+                    )}
+
+                    {/*for serviceman*/}
+                    {role === "Serviceman" && (
+                      <ul>
+                        <button
+                          className="btn btn-primary btn-sm w-full mb-2"
+                          onClick={() => navigate("/service/myJobs")}
+                        >
+                          My Jobs
+                        </button>
+                        <li>
+                          <button
+                            className="btn btn-primary btn-sm w-full mb-2"
+                            onClick={() => navigate("/service/Services")}
+                          >
+                            Find Services
+                          </button>
+                        </li>
+                        <li>
+                          <button
+                            className="btn btn-primary btn-sm w-full mb-2"
+                            onClick={() => navigate("/service/Payments")}
+                          >
+                            Payments
+                          </button>
+                        </li>
+                      </ul>
+                    )}
+                  </li>
                 </ul>
               </div>
-              <button
-                onClick={() => navigate("/")}
-              >
-                <img src="assets/2.png" alt="logo" className="w-[88px]"/>
+              <button onClick={() => navigate("/")}>
+                <img src="assets/2.png" alt="logo" className="w-[88px]" />
               </button>
             </div>
             <div className="flex lg:justify-between justify-end w-full">
               <div className="navbar-center hidden lg:flex">
                 <ul className="menu-horizontal px-1 space-x-5 text-white">
-                  {/* {navLists} */}
+                  {/* Optional additional nav items */}
                 </ul>
               </div>
               <div className="flex items-center gap-4">
@@ -172,9 +211,13 @@ const NavBar = () => {
                 )}
                 {!user && (
                   <>
-                    <button onClick={() => {
+                    <button
+                      onClick={() => {
                         navigate("/serSignUp");
-                      }}>Become a Serviceman</button>
+                      }}
+                    >
+                      Become a Serviceman
+                    </button>
                     <button
                       className="org-btn"
                       onClick={() => {
