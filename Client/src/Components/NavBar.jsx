@@ -64,7 +64,7 @@ const NavBar = () => {
                   {/* {navLists} */}
                   <li>
                     <button
-                      onClick={() => navigate("/home")}
+                      onClick={() => navigate("/AboutUs")}
                       className="btn btn-primary btn-sm w-full mb-2"
                     >
                       About Us
@@ -72,7 +72,7 @@ const NavBar = () => {
                   </li>
                   <li>
                     <button
-                      onClick={() => navigate("/contact")}
+                      onClick={() => navigate("/ContactUs")}
                       className="btn btn-primary btn-sm w-full mb-2"
                     >
                       Contact Us
@@ -80,7 +80,7 @@ const NavBar = () => {
                   </li>
                   <li>
                     <button
-                      onClick={() => navigate("/policy")}
+                      onClick={() => navigate("/OurPolicies")}
                       className="btn btn-primary btn-sm w-full mb-2"
                     >
                       Our Policy
@@ -95,8 +95,8 @@ const NavBar = () => {
                     </button>
                   </li>
                   <li>
+
                     {/* Customer-side: */}
-                    {/*for customer*/}
                     {role === "Client" && (
                       <ul>
                         <button
