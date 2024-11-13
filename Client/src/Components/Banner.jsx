@@ -1,8 +1,19 @@
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../AuthContextProvider";
+import { useContext } from "react";
 
 const Banner = () => {
   const navigate = useNavigate();
-
+  const { user } = useContext(AuthContext);
+  const role = user?.role;
+  console.log(role);
+  const handleGetStarted = () => {
+    if(role === "Client") {
+      navigate("/jobPost");
+    } else if(role === "Serviceman") {
+      navigate("/availableJobs");
+    }
+  };
   return (
     <div>
       <div
@@ -20,7 +31,7 @@ const Banner = () => {
             <p className="mb-5 text-xl text-accent">
               One-stop solution for your services. Order any service, anytime.
             </p>
-            <button className="btn bg-genoa" onClick={() => navigate("/jobPost")}>Get Started</button>
+            <button className="btn bg-genoa" onClick={handleGetStarted}>Get Started</button>
           </div>
         </div>
       </div>

@@ -12,6 +12,7 @@ import SerDashboard from "./Components/SerDashboard";
 import ProtectedRoute from "./Components/ProtectedRoute";
 import JobPost from "./Components/JobPost";
 import UserDashboard from "./Components/UserDashboard";
+import AvailableJobs from "./Components/AvailableJobs";
 
 const Router = () => {
   // const { user } = useContext(AuthContext);
@@ -66,6 +67,10 @@ const Router = () => {
         {
           path: "/jobPost",
           element: <ProtectedRoute><JobPost /></ProtectedRoute>,
+        },
+        {
+          path: "/availableJobs",
+          element: <ProtectedRoute><AvailableJobs/></ProtectedRoute>,
         }
       ],
     },

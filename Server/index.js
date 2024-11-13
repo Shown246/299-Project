@@ -104,6 +104,11 @@ async function run() {
       res.send(result);
     });
 
+    app.get("/jobPosts",verifyToken, async (req, res) => {
+      const result = await jobPosts.find().toArray();
+      res.send(result);
+    });
+
     app.post("/serProfile", verifyToken, async (req, res) => {
       const email = req.user.email;
       console.log(email);

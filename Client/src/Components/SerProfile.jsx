@@ -2,7 +2,8 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../AuthContextProvider";
 import { MdOutlineSaveAs, MdOutlineModeEdit } from "react-icons/md";
 import axios from "axios";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Box from "@mui/material/Box";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
@@ -29,18 +30,14 @@ const names = [
   "Carpenter",
   "HVAC (Heating, Ventilation, and Air Conditioning) Repair",
   "Appliance Repairer",
-  "Car Mechanic",
-  "Landscaping/Gardening",
+  "Gardening",
   "Home Cleaning Service",
-  "Painter",
-  "Mobile Device Repairer",
-  "Locksmith Service",
-  "Swimming Pool Maintenance",
+  "Painting Service",
+  "Locksmith",
   "Flooring Installation",
-  "Gutter Cleaning" 
-
-
-
+  "Babysitting",
+  "Carpentry Service",
+  "Pest Control",
 ];
 
 const SerProfile = () => {
@@ -126,6 +123,7 @@ const SerProfile = () => {
       )
       .then(() => {
         setIsEditing(false);
+        setIsSaveEnabled(false);
         toast.success("Changes saved successfully");
       })
       .then((err) => {
@@ -143,6 +141,7 @@ const SerProfile = () => {
     setphnData(e.target.value);
   };
   return (
+    <>
     <div>
       <div className="flex items-center pl-16 pt-10">
         <img src={user.photoURL} className="h-40 object-cover" />
@@ -186,13 +185,13 @@ const SerProfile = () => {
                                 "Mirpur",
                                 "Uttara",
                                 "Banani",
-                                "Gulshan",
                                 "Mohammadpur",
-                                "Bashundhara R/A",
+                                "Gulshan",
+                                "Bashundhara",
                                 "Nikunjo",
                                 "Badda",
                                 "Baridhara",
-                                "Old Town(Dhaka)",
+                                "Old Dhaka",
                                 "Wari",
                                 "Khilgaon",
                                 "Kakrail",
@@ -202,8 +201,6 @@ const SerProfile = () => {
                                 "Farmgate",
                                 "Tongi",
                                 "Tejgaon"
-                                
-                                // Add more options here
                               ].map((option) => (
                                 <li
                                   key={option}
@@ -426,6 +423,8 @@ const SerProfile = () => {
         </div>
       </div>
     </div>
+    <ToastContainer/>
+    </>
   );
 };
 
