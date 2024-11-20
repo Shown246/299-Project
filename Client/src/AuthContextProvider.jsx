@@ -121,6 +121,7 @@ const AuthContextProvider = ({ children }) => {
           const email = currentUser.email;
           const roleResponse = await axios.get(`http://localhost:5000/userRole?email=${email}`);
           const role = roleResponse.data;
+          console.log(role);
           const updatedUser = { ...currentUser, role };
           setUser(updatedUser);
           localStorage.setItem('user', JSON.stringify(updatedUser));

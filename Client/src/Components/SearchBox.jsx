@@ -1,7 +1,6 @@
 import React from "react";
 import Autosuggest from "react-autosuggest";
 
-
 // Sample data
 const languages = [
   {
@@ -23,7 +22,7 @@ const languages = [
     name: "Frog",
   },
   {
-    name: "Fuck You",
+    name: "Hello World",
   },
 ];
 
@@ -105,17 +104,17 @@ class SearchBox extends React.Component {
     };
 
     return (
-        <div className="w-full max-w-md mx-auto">
-          <Autosuggest
-            suggestions={suggestions}
-            onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-            onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-            getSuggestionValue={getSuggestionValue}
-            renderSuggestion={renderSuggestion}
-            inputProps={inputProps}
-            theme={theme} // Apply the theme
-          />
-        </div>
+      <div className="w-full max-w-md mx-auto">
+        <Autosuggest
+          suggestions={suggestions}
+          onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+          onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+          getSuggestionValue={getSuggestionValue}
+          renderSuggestion={renderSuggestion}
+          inputProps={inputProps}
+          theme={theme} // Apply the theme
+        />
+      </div>
     );
   }
 }
