@@ -12,7 +12,9 @@ const TestimonialCard = () => {
         borderRadius: "10px",
         maxWidth: "800px",
         margin: "auto",
+        marginTop: "69px",
       }}
+      className="container90 mt-20"
     >
       {/* Left Section: Text */}
       <div style={{ flex: 1, paddingRight: "20px" }}>
@@ -29,7 +31,8 @@ const TestimonialCard = () => {
         >
           "Such service platforms are available in other countries. I've
           personally used those when I was abroad. I'm very pleased that such a
-          portal is available here in Bangladesh as well. Thank you Sheba.xyz."
+          portal is now available here in Bangladesh as well. Thank you
+          SwiftHire."
         </blockquote>
         <p style={{ marginTop: "10px", fontWeight: "500", color: "#666" }}>
           - Zabeen Yusuf Nur
@@ -51,7 +54,7 @@ const TestimonialCard = () => {
         }}
       >
         <img
-          src="placeholder-for-user-photo.jpg"
+          src="https://via.placeholder.com/400x200"
           alt="Zabeen Yusuf Nur"
           style={{
             borderRadius: "10px",
