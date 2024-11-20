@@ -10,6 +10,8 @@ const NavBar = () => {
   const role = user?.role;
   console.log(role);
   const [, setTheme] = useState("light");
+  const [showSignUpModal, setShowSignUpModal] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(false);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
@@ -33,12 +35,35 @@ const NavBar = () => {
     }
   };
 
+  const toggleSignUpModal = () => {
+    setShowSignUpModal(!showSignUpModal);
+  };
+  const toggleLoginModal = () => {
+    setShowLoginModal(!showLoginModal);
+  };
+  const handleOptionSelectSignUp = (option) => {
+    console.log(option); // Set selected option
+    setShowSignUpModal(false); // Close modal
+  };
+  const handleOptionSelectLogIn = (option) => {
+    console.log(option); // Set selected option
+    if(option === "Customer"){
+      navigate("/logIn");
+    } else if(option === "Serviceman"){
+      navigate("/serlogIn");
+    } else if(option === "Admin"){
+      navigate("/adminDashboard");
+    }
+    setShowLoginModal(false); // Close modal
+  };
+
   return (
     <div className="bg-genoa">
       <header className="container90">
         <nav>
           <div className="navbar">
             <div className="navbar-start">
+              {/* Burger menu */}
               <div className="dropdown">
                 <div tabIndex={0} role="button" className="btn btn-ghost">
                   <svg
@@ -211,20 +236,90 @@ const NavBar = () => {
                 {!user && (
                   <>
                     <button
-                      onClick={() => {
-                        navigate("/serSignUp");
-                      }}
+                      onClick={toggleSignUpModal}
                     >
-                      Become a Serviceman
+                      Sign Up
                     </button>
+                    {showSignUpModal && (
+                      <div className="fixed inset-0 flex items-center justify-center bg-teal text-accent bg-opacity-50 z-50">
+                        <div className="bg-teal relative rounded-lg shadow-lg p-6">
+                          <h2 className="text-lg text-red-500 font-semibold mb-4">
+                            Sign Up as
+                          </h2>
+
+                          {/* Scrollable content */}
+                          <div className="max-h-96 overflow-y-auto">
+                            <ul className="flex gap-2">
+                              {/* Options */}
+                              {[
+                                "Customer",
+                                "Serviceman",
+                                "Admin"
+                              ].map((option) => (
+                                <li
+                                  key={option}
+                                  onClick={() => handleOptionSelectSignUp(option)}
+                                  className="py-2 px-4 cursor-pointer hover:bg-genoa rounded font-medium"
+                                >
+                                  {option}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+
+                          {/* Close button */}
+                          <button
+                            onClick={toggleSignUpModal}
+                            className="btn btn-sm btn-circle btn-ghost hover:text-red-700 hover:border-accent bg-red-800 absolute right-2 top-2"
+                          >
+                            x
+                          </button>
+                        </div>
+                      </div>
+                    )}
                     <button
                       className="org-btn"
-                      onClick={() => {
-                        navigate("/logIn");
-                      }}
+                      onClick={toggleLoginModal}
                     >
                       Log In
                     </button>
+                    {showLoginModal && (
+                      <div className="fixed inset-0 flex items-center justify-center bg-teal text-accent bg-opacity-50 z-50">
+                        <div className="bg-teal relative rounded-lg shadow-lg p-6">
+                          <h2 className="text-lg text-red-500 font-semibold mb-4">
+                            Log In as
+                          </h2>
+
+                          {/* Scrollable content */}
+                          <div className="max-h-96 overflow-y-auto">
+                            <ul className="flex gap-2">
+                              {/* Options */}
+                              {[
+                                "Customer",
+                                "Serviceman",
+                                "Admin"
+                              ].map((option) => (
+                                <li
+                                  key={option}
+                                  onClick={() => handleOptionSelectLogIn(option)}
+                                  className="py-2 px-4 cursor-pointer hover:bg-genoa rounded font-medium"
+                                >
+                                  {option}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+
+                          {/* Close button */}
+                          <button
+                            onClick={toggleLoginModal}
+                            className="btn btn-sm btn-circle btn-ghost hover:text-red-700 hover:border-accent bg-red-800 absolute right-2 top-2"
+                          >
+                            x
+                          </button>
+                        </div>
+                      </div>
+                    )}
                   </>
                 )}
                 <div>
