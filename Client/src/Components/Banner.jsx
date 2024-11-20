@@ -42,7 +42,7 @@ const Banner = () => {
               Your Personal Assistant
             </h1>
             {role && (
-              <h2 className="text-2xl font-semibold text-center text-white mt-2">
+              <h2 className="text-2xl font-semibold text-center text-accent mt-2">
                 {getWelcomeMessage()}
               </h2>
             )}
@@ -53,17 +53,6 @@ const Banner = () => {
               Get Started
             </button>
           </div>
-        </div>
-      </div>
-
-      {/* Additional Sections */}
-      <div>
-        {/* Safety Section */}
-        <SafetySection />
-
-        {/* Testimonial Section */}
-        <div style={{ marginTop: "50px", marginBottom: "50px" }}>
-          <TestimonialCard />
         </div>
       </div>
     </div>

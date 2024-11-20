@@ -47,11 +47,11 @@ const NavBar = () => {
   };
   const handleOptionSelectLogIn = (option) => {
     console.log(option); // Set selected option
-    if(option === "Customer"){
+    if (option === "Customer") {
       navigate("/logIn");
-    } else if(option === "Serviceman"){
+    } else if (option === "Serviceman") {
       navigate("/serlogIn");
-    } else if(option === "Admin"){
+    } else if (option === "Admin") {
       navigate("/adminDashboard");
     }
     setShowLoginModal(false); // Close modal
@@ -127,7 +127,7 @@ const NavBar = () => {
                       <li>
                         <button
                           className="btn btn-primary btn-sm w-full mb-2"
-                          onClick={() => navigate("/service/Services")}
+                          onClick={() => navigate("/availableJobs")}
                         >
                           Find Services
                         </button>
@@ -244,11 +244,7 @@ const NavBar = () => {
                 )}
                 {!user && (
                   <>
-                    <button
-                      onClick={toggleSignUpModal}
-                    >
-                      Sign Up
-                    </button>
+                    <button onClick={toggleSignUpModal}>Sign Up</button>
                     {showSignUpModal && (
                       <div className="fixed inset-0 flex items-center justify-center bg-teal text-accent bg-opacity-50 z-50">
                         <div className="bg-teal relative rounded-lg shadow-lg p-6">
@@ -260,19 +256,19 @@ const NavBar = () => {
                           <div className="max-h-96 overflow-y-auto">
                             <ul className="flex gap-2">
                               {/* Options */}
-                              {[
-                                "Customer",
-                                "Serviceman",
-                                "Admin"
-                              ].map((option) => (
-                                <li
-                                  key={option}
-                                  onClick={() => handleOptionSelectSignUp(option)}
-                                  className="py-2 px-4 cursor-pointer hover:bg-genoa rounded font-medium"
-                                >
-                                  {option}
-                                </li>
-                              ))}
+                              {["Customer", "Serviceman", "Admin"].map(
+                                (option) => (
+                                  <li
+                                    key={option}
+                                    onClick={() =>
+                                      handleOptionSelectSignUp(option)
+                                    }
+                                    className="py-2 px-4 cursor-pointer hover:bg-genoa rounded font-medium"
+                                  >
+                                    {option}
+                                  </li>
+                                )
+                              )}
                             </ul>
                           </div>
 
@@ -286,10 +282,7 @@ const NavBar = () => {
                         </div>
                       </div>
                     )}
-                    <button
-                      className="org-btn"
-                      onClick={toggleLoginModal}
-                    >
+                    <button className="org-btn" onClick={toggleLoginModal}>
                       Log In
                     </button>
                     {showLoginModal && (
@@ -303,19 +296,19 @@ const NavBar = () => {
                           <div className="max-h-96 overflow-y-auto">
                             <ul className="flex gap-2">
                               {/* Options */}
-                              {[
-                                "Customer",
-                                "Serviceman",
-                                "Admin"
-                              ].map((option) => (
-                                <li
-                                  key={option}
-                                  onClick={() => handleOptionSelectLogIn(option)}
-                                  className="py-2 px-4 cursor-pointer hover:bg-genoa rounded font-medium"
-                                >
-                                  {option}
-                                </li>
-                              ))}
+                              {["Customer", "Serviceman", "Admin"].map(
+                                (option) => (
+                                  <li
+                                    key={option}
+                                    onClick={() =>
+                                      handleOptionSelectLogIn(option)
+                                    }
+                                    className="py-2 px-4 cursor-pointer hover:bg-genoa rounded font-medium"
+                                  >
+                                    {option}
+                                  </li>
+                                )
+                              )}
                             </ul>
                           </div>
 
