@@ -109,11 +109,10 @@ async function run() {
       res.send(result);
     });
 
-    app.get("/jobPost/:id", async (req, res) => {
+    app.get("/jobPost/:id", verifyToken, async (req, res) => {
       const id = req.params.id;
-      console.log(id);
-      // const result = await jobPosts.findOne({ _id: ObjectId(id) });
-      // res.send(result);
+      const result = await jobPosts.findOne({ _id: new ObjectId(id) });
+      res.send(result);
     });
 
     app.post("/serProfile", verifyToken, async (req, res) => {

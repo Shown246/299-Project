@@ -1,4 +1,3 @@
-import React from "react";
 import { FaFacebook, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 
 function ContactUs() {
@@ -7,12 +6,10 @@ function ContactUs() {
     fontWeight: "bold",
     color: "black",
     padding: 8,
-    borderRadius: 8, // Adjusted border radius for buttons or text containers if needed
     maxWidth: "600px",
     margin: "auto",
     backgroundColor: "white",
     borderRadius: "8px",
-    padding: "20px",
   };
 
   return (

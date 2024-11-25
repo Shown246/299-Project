@@ -84,7 +84,7 @@ const NavBar = () => {
                 {/* Dropdown Menu */}
                 <ul
                   tabIndex={0}
-                  className=" menu-sm dropdown-content mt-3 z-40 pt-6 p-2 shadow rounded-box w-52 bg-genoa text-white"
+                  className=" menu-sm dropdown-content mt-3 z-40 pt-6 p-2 shadow rounded-box w-52 bg-genoa text-accent"
                 >
                   {role === "Client" && (
                     <>
@@ -151,11 +151,11 @@ const NavBar = () => {
             <div className="flex lg:justify-between justify-end w-full">
               {/* Horizontal Buttons */}
               <div className="navbar-center hidden lg:flex">
-                <ul className="menu-horizontal px-1 text-white flex items-center">
+                <ul className="menu-horizontal px-1 text-accent flex items-center">
                   <li>
                     <button
                       onClick={() => navigate("/")}
-                      className="text-white"
+                      className="text-accent"
                     >
                       Home
                     </button>
@@ -164,7 +164,7 @@ const NavBar = () => {
                   <li>
                     <button
                       onClick={() => navigate("/AboutUs")}
-                      className="text-white"
+                      className="text-accent"
                     >
                       About Us
                     </button>
@@ -173,7 +173,7 @@ const NavBar = () => {
                   <li>
                     <button
                       onClick={() => navigate("/ContactUs")}
-                      className="text-white"
+                      className="text-accent"
                     >
                       Contact Us
                     </button>
@@ -182,18 +182,9 @@ const NavBar = () => {
                   <li>
                     <button
                       onClick={() => navigate("/OurPolicies")}
-                      className="text-white"
+                      className="text-accent"
                     >
                       Our Policy
-                    </button>
-                  </li>
-                  <span className="mx-5">|</span>
-                  <li>
-                    <button
-                      onClick={() => navigate("/language")}
-                      className="text-white"
-                    >
-                      Language
                     </button>
                   </li>
                 </ul>
@@ -230,7 +221,7 @@ const NavBar = () => {
                         </button>
                         <br />
                         <button
-                          className="bg-flamingo text-white px-4 rounded-md  cursor-pointer"
+                          className="bg-flamingo text-accent px-4 rounded-md  cursor-pointer"
                           onClick={() => {
                             LogOutUser();
                             navigate("/logIn");

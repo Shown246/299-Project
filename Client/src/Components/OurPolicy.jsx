@@ -1,5 +1,3 @@
-import { Component } from 'react';
-
 function OurPolicies() {
   const pageStyles = {
     backgroundColor: 'lightblue', // Light blue background
