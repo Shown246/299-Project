@@ -47,11 +47,11 @@ const NavBar = () => {
   };
   const handleOptionSelectLogIn = (option) => {
     console.log(option); // Set selected option
-    if(option === "Customer"){
+    if (option === "Customer") {
       navigate("/logIn");
-    } else if(option === "Serviceman"){
+    } else if (option === "Serviceman") {
       navigate("/serlogIn");
-    } else if(option === "Admin"){
+    } else if (option === "Admin") {
       navigate("/adminDashboard");
     }
     setShowLoginModal(false); // Close modal
@@ -86,97 +86,62 @@ const NavBar = () => {
                   tabIndex={0}
                   className=" menu-sm dropdown-content mt-3 z-40 pt-6 p-2 shadow rounded-box w-52 bg-genoa text-white"
                 >
-                  {/* {navLists} */}
-                  <li>
-                    <button
-                      onClick={() => navigate("/home")}
-                      className="btn btn-primary btn-sm w-full mb-2"
-                    >
-                      About Us
-                    </button>
-                  </li>
-                  <li>
-                    <button
-                      onClick={() => navigate("/contact")}
-                      className="btn btn-primary btn-sm w-full mb-2"
-                    >
-                      Contact Us
-                    </button>
-                  </li>
-                  <li>
-                    <button
-                      onClick={() => navigate("/policy")}
-                      className="btn btn-primary btn-sm w-full mb-2"
-                    >
-                      Our Policy
-                    </button>
-                  </li>
-                  <li>
-                    <button
-                      className="btn btn-primary btn-sm w-full mb-2"
-                      onClick={() => navigate("/language")}
-                    >
-                      Language
-                    </button>
-                  </li>
-                  <li>
-                    {/* Customer-side: */}
-                    {/*for customer*/}
-                    {role === "Client" && (
-                      <ul>
+                  {role === "Client" && (
+                    <>
+                      <li>
                         <button
                           className="btn btn-primary btn-sm w-full mb-2"
                           onClick={() => navigate("/service/myServices")}
                         >
                           My Jobs
                         </button>
-                        <li>
-                          <button
-                            className="btn btn-primary btn-sm w-full mb-2"
-                            onClick={() => navigate("/service/Services")}
-                          >
-                            Add Services
-                          </button>
-                        </li>
-                        <li>
-                          <button
-                            className="btn btn-primary btn-sm w-full mb-2"
-                            onClick={() => navigate("/service/Payments")}
-                          >
-                            Payments
-                          </button>
-                        </li>
-                      </ul>
-                    )}
-
-                    {/*for serviceman*/}
-                    {role === "Serviceman" && (
-                      <ul>
+                      </li>
+                      <li>
+                        <button
+                          className="btn btn-primary btn-sm w-full mb-2"
+                          onClick={() => navigate("/service/Services")}
+                        >
+                          Add Services
+                        </button>
+                      </li>
+                      <li>
+                        <button
+                          className="btn btn-primary btn-sm w-full mb-2"
+                          onClick={() => navigate("/service/Payments")}
+                        >
+                          Payments
+                        </button>
+                      </li>
+                    </>
+                  )}
+                  {role === "Serviceman" && (
+                    <>
+                      <li>
                         <button
                           className="btn btn-primary btn-sm w-full mb-2"
                           onClick={() => navigate("/service/myJobs")}
                         >
                           My Jobs
                         </button>
-                        <li>
-                          <button
-                            className="btn btn-primary btn-sm w-full mb-2"
-                            onClick={() => navigate("/service/Services")}
-                          >
-                            Find Services
-                          </button>
-                        </li>
-                        <li>
-                          <button
-                            className="btn btn-primary btn-sm w-full mb-2"
-                            onClick={() => navigate("/service/Payments")}
-                          >
-                            Payments
-                          </button>
-                        </li>
-                      </ul>
-                    )}
-                  </li>
+                      </li>
+                      <li>
+                        <button
+                          className="btn btn-primary btn-sm w-full mb-2"
+                          onClick={() => navigate("/availableJobs")}
+                        >
+                          Find Services
+                        </button>
+                      </li>
+                      <li>
+                        <button
+                          className="btn btn-primary btn-sm w-full mb-2"
+                          onClick={() => navigate("/service/Payments")}
+                        >
+                          Payments
+                        </button>
+                      </li>
+                    </>
+                  )}
                 </ul>
               </div>
               <button onClick={() => navigate("/")}>
@@ -184,9 +149,53 @@ const NavBar = () => {
               </button>
             </div>
             <div className="flex lg:justify-between justify-end w-full">
+              {/* Horizontal Buttons */}
               <div className="navbar-center hidden lg:flex">
-                <ul className="menu-horizontal px-1 space-x-5 text-white">
-                  {/* Optional additional nav items */}
+                <ul className="menu-horizontal px-1 text-white flex items-center">
+                  <li>
+                    <button
+                      onClick={() => navigate("/")}
+                      className="text-white"
+                    >
+                      Home
+                    </button>
+                  </li>
+                  <span className="mx-5">|</span>
+                  <li>
+                    <button
+                      onClick={() => navigate("/AboutUs")}
+                      className="text-white"
+                    >
+                      About Us
+                    </button>
+                  </li>
+                  <span className="mx-5">|</span>
+                  <li>
+                    <button
+                      onClick={() => navigate("/ContactUs")}
+                      className="text-white"
+                    >
+                      Contact Us
+                    </button>
+                  </li>
+                  <span className="mx-5">|</span>
+                  <li>
+                    <button
+                      onClick={() => navigate("/OurPolicies")}
+                      className="text-white"
+                    >
+                      Our Policy
+                    </button>
+                  </li>
+                  <span className="mx-5">|</span>
+                  <li>
+                    <button
+                      onClick={() => navigate("/language")}
+                      className="text-white"
+                    >
+                      Language
+                    </button>
+                  </li>
                 </ul>
               </div>
               <div className="flex items-center gap-4">
@@ -235,11 +244,7 @@ const NavBar = () => {
                 )}
                 {!user && (
                   <>
-                    <button
-                      onClick={toggleSignUpModal}
-                    >
-                      Sign Up
-                    </button>
+                    <button onClick={toggleSignUpModal}>Sign Up</button>
                     {showSignUpModal && (
                       <div className="fixed inset-0 flex items-center justify-center bg-teal text-accent bg-opacity-50 z-50">
                         <div className="bg-teal relative rounded-lg shadow-lg p-6">
@@ -251,19 +256,19 @@ const NavBar = () => {
                           <div className="max-h-96 overflow-y-auto">
                             <ul className="flex gap-2">
                               {/* Options */}
-                              {[
-                                "Customer",
-                                "Serviceman",
-                                "Admin"
-                              ].map((option) => (
-                                <li
-                                  key={option}
-                                  onClick={() => handleOptionSelectSignUp(option)}
-                                  className="py-2 px-4 cursor-pointer hover:bg-genoa rounded font-medium"
-                                >
-                                  {option}
-                                </li>
-                              ))}
+                              {["Customer", "Serviceman", "Admin"].map(
+                                (option) => (
+                                  <li
+                                    key={option}
+                                    onClick={() =>
+                                      handleOptionSelectSignUp(option)
+                                    }
+                                    className="py-2 px-4 cursor-pointer hover:bg-genoa rounded font-medium"
+                                  >
+                                    {option}
+                                  </li>
+                                )
+                              )}
                             </ul>
                           </div>
 
@@ -277,10 +282,7 @@ const NavBar = () => {
                         </div>
                       </div>
                     )}
-                    <button
-                      className="org-btn"
-                      onClick={toggleLoginModal}
-                    >
+                    <button className="org-btn" onClick={toggleLoginModal}>
                       Log In
                     </button>
                     {showLoginModal && (
@@ -294,19 +296,19 @@ const NavBar = () => {
                           <div className="max-h-96 overflow-y-auto">
                             <ul className="flex gap-2">
                               {/* Options */}
-                              {[
-                                "Customer",
-                                "Serviceman",
-                                "Admin"
-                              ].map((option) => (
-                                <li
-                                  key={option}
-                                  onClick={() => handleOptionSelectLogIn(option)}
-                                  className="py-2 px-4 cursor-pointer hover:bg-genoa rounded font-medium"
-                                >
-                                  {option}
-                                </li>
-                              ))}
+                              {["Customer", "Serviceman", "Admin"].map(
+                                (option) => (
+                                  <li
+                                    key={option}
+                                    onClick={() =>
+                                      handleOptionSelectLogIn(option)
+                                    }
+                                    className="py-2 px-4 cursor-pointer hover:bg-genoa rounded font-medium"
+                                  >
+                                    {option}
+                                  </li>
+                                )
+                              )}
                             </ul>
                           </div>
 

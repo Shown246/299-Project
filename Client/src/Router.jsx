@@ -14,6 +14,9 @@ import JobPost from "./Components/JobPost";
 import UserDashboard from "./Components/UserDashboard";
 import AvailableJobs from "./Components/AvailableJobs";
 import JobApplication from "./Components/JobApplication";
+import AboutUs from "./Components/AboutUs";
+import ContactUs from "./Components/ContactUs";
+import OurPolicies from "./Components/OurPolicy";
 
 const Router = () => {
   // const { user } = useContext(AuthContext);
@@ -50,8 +53,20 @@ const Router = () => {
           element: <Home />,
         },
         {
+          path: "/AboutUs",
+          element: <AboutUs />,
+        },
+        {
+          path: "/ContactUs",
+          element: <ContactUs />,
+        },
+        {
           path: "/logIn",
           element: <LogIn />,
+        },
+        {
+          path: "/OurPolicies",
+          element: <OurPolicies />,
         },
         {
           path: "/signUp",
