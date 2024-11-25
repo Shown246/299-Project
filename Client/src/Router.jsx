@@ -13,6 +13,7 @@ import ProtectedRoute from "./Components/ProtectedRoute";
 import JobPost from "./Components/JobPost";
 import UserDashboard from "./Components/UserDashboard";
 import AvailableJobs from "./Components/AvailableJobs";
+import JobApplication from "./Components/JobApplication";
 
 const Router = () => {
   // const { user } = useContext(AuthContext);
@@ -71,7 +72,11 @@ const Router = () => {
         {
           path: "/availableJobs",
           element: <ProtectedRoute><AvailableJobs/></ProtectedRoute>,
-        }
+        },
+        {
+          path: "/jobApplication/:id",
+          element: <ProtectedRoute><JobApplication/></ProtectedRoute>,
+        },
       ],
     },
     {
