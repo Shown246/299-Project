@@ -1,9 +1,7 @@
+/* eslint-disable no-undef */
 import daisyui from "daisyui";
-// eslint-disable-next-line no-undef
-const withMT = require("@material-tailwind/react/utils/withMT");
 /** @type {import('tailwindcss').Config} */
-// eslint-disable-next-line no-undef
-module.exports = withMT({
+module.exports = {
   darkMode: 'selector',
   content: ["./src/**/*.{html,js,ts,jsx,tsx}", "*.{html,js,ts,jsx,tsx}"],
   theme: {
@@ -22,4 +20,4 @@ module.exports = withMT({
     themes: [
       "light"],
   },
-});
+}
