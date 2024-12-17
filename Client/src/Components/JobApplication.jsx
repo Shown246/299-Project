@@ -1,9 +1,14 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
+import { AuthContext } from "../AuthContextProvider";
+import Swal from 'sweetalert2'
 
 const JobApplication = () => {
   const { id } = useParams();
+  const { user } = useContext(AuthContext);
+  const email = user?.email;
+  console.log(email);
   const [jobPost, setJobPost] = useState({});
   const [bids, setBids] = useState([
     { username: "User123", price: 200, time: "10:45 AM" },
@@ -26,22 +31,48 @@ const JobApplication = () => {
     0
   );
 
-  // Handle Place Bid button click
+  // Load bids from local storage on initial render
+  useEffect(() => {
+    const storedBids = localStorage.getItem("bids");
+    if (storedBids) {
+      setBids(JSON.parse(storedBids));
+    }
+  }, []);
+
+  // Save bids to local storage whenever bids state changes
+  useEffect(() => {
+    localStorage.setItem("bids", JSON.stringify(bids));
+  }, [bids]);
+
+  // Handle placing a new bid
   const handlePlaceBid = () => {
     if (myBid && !isNaN(myBid) && myBid > 0) {
-      const currentTime = new Date();
-      const formattedTime = `${currentTime.getHours()}:${String(
-        currentTime.getMinutes()
-      ).padStart(2, "0")} ${currentTime.getHours() >= 12 ? "PM" : "AM"}`;
-
       const newBid = {
-        username: "You", // Replace with dynamic username if available
+        username: email, // Replace with dynamic username if available
         price: parseInt(myBid),
-        time: formattedTime,
       };
 
-      setBids((prevBids) => [...prevBids, newBid]); // Add new bid to the list
+      setBids((prevBids) => {
+        const updatedBids = [...prevBids, newBid];
+        localStorage.setItem("bids", JSON.stringify(updatedBids)); // Update local storage
+        return updatedBids;
+      });
+
+      Swal.fire({
+        title: "Success!",
+        text: "Your bid has been placed.",
+        icon: "success",
+        confirmButtonText: "Done",
+      });
+
       setMyBid(""); // Clear input field
+    } else {
+      Swal.fire({
+        title: "Invalid Bid",
+        text: "Please enter a valid number greater than 0.",
+        icon: "error",
+        confirmButtonText: "OK",
+      });
     }
   };
 

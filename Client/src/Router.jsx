@@ -17,6 +17,8 @@ import JobApplication from "./Components/JobApplication";
 import AboutUs from "./Components/AboutUs";
 import ContactUs from "./Components/ContactUs";
 import OurPolicies from "./Components/OurPolicy";
+import MyJobs from "./Components/MyJobs";
+import MyJob from "./Components/MyJob";
 
 const Router = () => {
   // const { user } = useContext(AuthContext);
@@ -91,6 +93,14 @@ const Router = () => {
         {
           path: "/jobApplication/:id",
           element: <ProtectedRoute><JobApplication/></ProtectedRoute>,
+        },
+        {
+          path: "/myJobs",
+          element: <ProtectedRoute><MyJobs/></ProtectedRoute>,
+        },
+        {
+          path: "/myJob/:id",
+          element: <ProtectedRoute><MyJob/></ProtectedRoute>,
         },
       ],
     },

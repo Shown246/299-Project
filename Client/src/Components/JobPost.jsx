@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { AuthContext } from "../AuthContextProvider";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 import SearchBox from "./SearchBox";
 import { FaSearch } from "react-icons/fa";
@@ -6,9 +7,12 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+
 const JobPost = () => {
   const navigate = useNavigate(); // Initialize navigate for redirection
-
+  const { user } = useContext(AuthContext);
+  const email = user?.email;
+  console.log(email);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
   const [searchValue, setSearchValue] = useState("");
@@ -84,6 +88,7 @@ const JobPost = () => {
       console.log("Image uploaded successfully:", imageUrl);
 
       const newJobPost = {
+        email: email, 
         location: formData.location,
         job: formData.job,
         title: formData.title,
