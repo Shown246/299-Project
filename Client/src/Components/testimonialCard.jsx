@@ -35,10 +35,10 @@ const TestimonialCard = () => {
           SwiftHire."
         </blockquote>
         <p style={{ marginTop: "10px", fontWeight: "500", color: "#666" }}>
-          - Zabeen Yusuf Nur
+          - Shihab Aabir Tawsif
           <br />
           <span style={{ fontStyle: "italic", color: "#999" }}>
-            IT Consultant, Australia
+            CSE Student, North South University
           </span>
         </p>
       </div>

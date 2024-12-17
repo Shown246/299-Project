@@ -91,7 +91,7 @@ const NavBar = () => {
                       <li>
                         <button
                           className="btn btn-primary btn-sm w-full mb-2"
-                          onClick={() => navigate("/service/myServices")}
+                          onClick={() => navigate("/MyCustomerJob")}
                         >
                           My Jobs
                         </button>
@@ -99,7 +99,7 @@ const NavBar = () => {
                       <li>
                         <button
                           className="btn btn-primary btn-sm w-full mb-2"
-                          onClick={() => navigate("/service/Services")}
+                          onClick={() => navigate("/jobPost")}
                         >
                           Add Services
                         </button>
@@ -112,6 +112,14 @@ const NavBar = () => {
                           Payments
                         </button>
                       </li>
+                      <li>
+                        <button
+                          className="btn btn-primary btn-sm w-full mb-2"
+                          onClick={() => navigate("/logIn")}
+                        >
+                          Log Out
+                        </button>
+                      </li>
                     </>
                   )}
                   {role === "Serviceman" && (
@@ -119,7 +127,7 @@ const NavBar = () => {
                       <li>
                         <button
                           className="btn btn-primary btn-sm w-full mb-2"
-                          onClick={() => navigate("/service/myJobs")}
+                          onClick={() => navigate("/MyServicemanJob")}
                         >
                           My Jobs
                         </button>
@@ -138,6 +146,14 @@ const NavBar = () => {
                           onClick={() => navigate("/service/Payments")}
                         >
                           Payments
+                        </button>
+                      </li>
+                      <li>
+                        <button
+                          className="btn btn-primary btn-sm w-full mb-2"
+                          onClick={() => navigate("/logIn")}
+                        >
+                          Log Out
                         </button>
                       </li>
                     </>

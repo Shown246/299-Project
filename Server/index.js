@@ -57,15 +57,11 @@ const verifyToken = (req, res, next) => {
 
 async function run() {
   try {
-    // Connect the client to the server	(optional starting in v4.7)
-    // await client.connect();
     app.post("/jwt", async (req, res) => {
       const email = req.body;
       const token = jwt.sign(email, process.env.JWT_SECRET, { expiresIn: "7d" });
-      
-      // Set cookie with appropriate options
       res.cookie("token", token, cookieOptions);
-      res.status(200).send({ success: true }); // Use 200 status instead of 204
+      res.status(200).send({ success: true });
     });
 
     app.post("/logout", async (req, res) => {
@@ -78,6 +74,7 @@ async function run() {
     const users = database.collection("users");
     const jobPosts = database.collection("JobPosts");
     const serProfiles = database.collection("ServiceMen");
+    const bids = database.collection("Bids"); // New bids collection
 
     app.post("/users", async (req, res) => {
       const newUser = req.body;
@@ -108,7 +105,7 @@ async function run() {
       res.send(result);
     });
 
-    app.get("/jobPosts",verifyToken, async (req, res) => {
+    app.get("/jobPosts", verifyToken, async (req, res) => {
       const result = await jobPosts.find().toArray();
       res.send(result);
     });
@@ -121,7 +118,6 @@ async function run() {
 
     app.post("/serProfile", verifyToken, async (req, res) => {
       const email = req.user.email;
-      console.log(email);
       if (req.body.email === email) {
         const query = { email: email };
         const update = {
@@ -131,7 +127,7 @@ async function run() {
             expData: req.body.expData,
             phnData: req.body.phnData,
             selectedLocation: req.body.selectedLocation,
-            gender: req.body.gender
+            gender: req.body.gender,
           },
         };
         const options = { upsert: true };
@@ -140,7 +136,7 @@ async function run() {
       } else {
         return res.status(403).send({ message: "Unauthorized" });
       }
-    })
+    });
 
     app.get("/serProfile", verifyToken, async (req, res) => {
       const email = req.query.email;
@@ -148,13 +144,72 @@ async function run() {
       res.send(result);
     });
 
+    // New route to get all jobs a serviceman has applied to
+    app.get("/servicemanJobs", verifyToken, async (req, res) => {
+      try {
+        const servicemanEmail = req.user.email;
+        const jobBids = await bids.find({ servicemanEmail }).toArray();
+        const jobDetails = await Promise.all(
+          jobBids.map(async (bid) => {
+            const job = await jobPosts.findOne({ _id: new ObjectId(bid.jobId) });
+            return {
+              jobId: job._id,
+              jobTitle: job.title,
+              jobDescription: job.description,
+              bidAmount: bid.amount,
+              status: bid.status,
+            };
+          })
+        );
+        res.send(jobDetails);
+      } catch (err) {
+        res.status(500).send({ message: "Failed to fetch serviceman jobs" });
+      }
+    });
+
+    // New route to place a bid on a job
+    app.post("/placeBid", verifyToken, async (req, res) => {
+      const { jobId, amount } = req.body;
+      const servicemanEmail = req.user.email;
+
+      try {
+        const job = await jobPosts.findOne({ _id: new ObjectId(jobId) });
+        if (!job) {
+          return res.status(404).send({ message: "Job not found" });
+        }
+
+        // Insert the bid into the Bids collection
+        const newBid = {
+          jobId,
+          servicemanEmail,
+          amount,
+          status: "Pending", // Initial bid status
+        };
+
+        const result = await bids.insertOne(newBid);
+        res.send(result);
+      } catch (err) {
+        res.status(500).send({ message: "Failed to place bid" });
+      }
+    });
+
+    // New route to get all bids placed by a serviceman
+    app.get("/servicemanBids", verifyToken, async (req, res) => {
+      try {
+        const servicemanEmail = req.user.email;
+        const bidList = await bids.find({ servicemanEmail }).toArray();
+        res.send(bidList);
+      } catch (err) {
+        res.status(500).send({ message: "Failed to fetch serviceman bids" });
+      }
+    });
+
     await client.db("299DB").command({ ping: 1 });
     console.log(
       "Pinged your deployment. You successfully connected to MongoDB!"
     );
   } finally {
-    // Ensures that the client will close when you finish/error
-    // await client.close();
+    // await client.close(); Uncomment when needed
   }
 }
 run().catch(console.dir);

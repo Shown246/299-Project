@@ -17,20 +17,21 @@ import JobApplication from "./Components/JobApplication";
 import AboutUs from "./Components/AboutUs";
 import ContactUs from "./Components/ContactUs";
 import OurPolicies from "./Components/OurPolicy";
-
+import MyCustomerJob from "./Components/MyCustomerJob";
+import MyServicemanJob from "./Components/MyServicemanJob";
 const Router = () => {
   // const { user } = useContext(AuthContext);
   // const role = user?.role;
   // const guideRoutes = [
-    
+
   // ];
 
   // const touristRoutes = [
-    
+
   // ];
 
   // const adminRoutes = [
-    
+
   // ];
 
   // let childrenRoutes = [];
@@ -81,16 +82,44 @@ const Router = () => {
           element: <SerSignUp />,
         },
         {
+          path: "/myCustomerJob",
+          element: (
+            <ProtectedRoute>
+              <MyCustomerJob />
+            </ProtectedRoute>
+          ),
+        },
+        {
           path: "/jobPost",
-          element: <ProtectedRoute><JobPost /></ProtectedRoute>,
+          element: (
+            <ProtectedRoute>
+              <JobPost />
+            </ProtectedRoute>
+          ),
         },
         {
           path: "/availableJobs",
-          element: <ProtectedRoute><AvailableJobs/></ProtectedRoute>,
+          element: (
+            <ProtectedRoute>
+              <AvailableJobs />
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: "/myServicemanJob",
+          element: (
+            <ProtectedRoute>
+              <MyServicemanJob />
+            </ProtectedRoute>
+          ),
         },
         {
           path: "/jobApplication/:id",
-          element: <ProtectedRoute><JobApplication/></ProtectedRoute>,
+          element: (
+            <ProtectedRoute>
+              <JobApplication />
+            </ProtectedRoute>
+          ),
         },
       ],
     },
@@ -101,8 +130,7 @@ const Router = () => {
     {
       path: "/serDashboard",
       element: <SerDashboard />,
-    }
-    
+    },
   ]);
   return <RouterProvider router={router} />;
 };
