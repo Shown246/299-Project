@@ -91,7 +91,7 @@ const NavBar = () => {
                       <li>
                         <button
                           className="btn btn-primary btn-sm w-full mb-2"
-                          onClick={() => navigate("/MyCustomerJob")}
+                          onClick={() => navigate("/myJobs")}
                         >
                           My Jobs
                         </button>

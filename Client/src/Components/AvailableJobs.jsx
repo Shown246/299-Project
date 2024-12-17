@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 const AvailableJobs = () => {
   const { user } = useContext(AuthContext);
   const [jobPosts, setJobPosts] = useState([]);
-  const [selectedLocation, setSelectedLocation] = useState("");
+  const [, setSelectedLocation] = useState("");
   const navigate = useNavigate();
   useEffect(() => {
     axios

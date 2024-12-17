@@ -18,7 +18,9 @@ import AboutUs from "./Components/AboutUs";
 import ContactUs from "./Components/ContactUs";
 import OurPolicies from "./Components/OurPolicy";
 import MyCustomerJob from "./Components/MyCustomerJob";
-import MyServicemanJob from "./Components/MyServicemanJob";
+import MyServicemanJob from "./Components/MyServicemanJob";import MyJobs from "./Components/MyJobs";
+import MyJob from "./Components/MyJob";
+
 const Router = () => {
   // const { user } = useContext(AuthContext);
   // const role = user?.role;
@@ -120,6 +122,14 @@ const Router = () => {
               <JobApplication />
             </ProtectedRoute>
           ),
+        },
+        {
+          path: "/myJobs",
+          element: <ProtectedRoute><MyJobs/></ProtectedRoute>,
+        },
+        {
+          path: "/myJob/:id",
+          element: <ProtectedRoute><MyJob/></ProtectedRoute>,
         },
       ],
     },
