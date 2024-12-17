@@ -18,7 +18,7 @@ import AboutUs from "./Components/AboutUs";
 import ContactUs from "./Components/ContactUs";
 import OurPolicies from "./Components/OurPolicy";
 import MyCustomerJob from "./Components/MyCustomerJob";
-import MyServicemanJob from "./Components/MyServicemanJob";import MyJobs from "./Components/MyJobs";
+import MyJobs from "./Components/MyJobs";
 import MyJob from "./Components/MyJob";
 
 const Router = () => {
